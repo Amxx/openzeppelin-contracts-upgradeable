@@ -63,7 +63,6 @@ jobs:
         env:
           TARBALL: ${{ steps.pack.outputs.tarball }}
           TAG: ${{ steps.pack.outputs.tag }}
-        continue-on-error: true
       - name: Create Github Release
         uses: actions/github-script@v8
         env:
