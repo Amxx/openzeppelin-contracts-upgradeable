@@ -65,6 +65,13 @@ contract AccountERC7579HookedUpgradeableWithInit is AccountERC7579HookedUpgradea
         __AccountERC7579Hooked_init();
     }
 }
+import "../crosschain/bridges/BridgeERC1155Upgradeable.sol";
+
+contract BridgeERC1155UpgradeableWithInit is BridgeERC1155Upgradeable {
+    constructor(IERC1155 token_) payable initializer {
+        __BridgeERC1155_init(token_);
+    }
+}
 import "../crosschain/bridges/BridgeERC20Upgradeable.sol";
 
 contract BridgeERC20UpgradeableWithInit is BridgeERC20Upgradeable {
@@ -72,11 +79,25 @@ contract BridgeERC20UpgradeableWithInit is BridgeERC20Upgradeable {
         __BridgeERC20_init(token_);
     }
 }
+import "../crosschain/bridges/BridgeERC721Upgradeable.sol";
+
+contract BridgeERC721UpgradeableWithInit is BridgeERC721Upgradeable {
+    constructor(IERC721 token_) payable initializer {
+        __BridgeERC721_init(token_);
+    }
+}
 import "../crosschain/bridges/BridgeERC7802Upgradeable.sol";
 
 contract BridgeERC7802UpgradeableWithInit is BridgeERC7802Upgradeable {
     constructor(IERC7802 token_) payable initializer {
         __BridgeERC7802_init(token_);
+    }
+}
+import "../crosschain/CrosschainRemoteExecutorUpgradeable.sol";
+
+contract CrosschainRemoteExecutorUpgradeableWithInit is CrosschainRemoteExecutorUpgradeable {
+    constructor(address initialGateway, bytes memory initialController) payable initializer {
+        __CrosschainRemoteExecutor_init(initialGateway, initialController);
     }
 }
 import "../finance/VestingWalletUpgradeable.sol";
@@ -672,6 +693,13 @@ contract GovernorCountingOverridableMockUpgradeableWithInit is GovernorCountingO
         __GovernorCountingOverridableMock_init();
     }
 }
+import "./governance/GovernorCrosschainUpgradeable.sol";
+
+contract GovernorCrosschainMockUpgradeableWithInit is GovernorCrosschainMockUpgradeable {
+    constructor() payable initializer {
+        __GovernorCrosschainMock_init();
+    }
+}
 import "./governance/GovernorFractionalMockUpgradeable.sol";
 
 contract GovernorFractionalMockUpgradeableWithInit is GovernorFractionalMockUpgradeable {
@@ -1228,6 +1256,13 @@ contract ERC1155BurnableUpgradeableWithInit is ERC1155BurnableUpgradeable {
         __ERC1155Burnable_init();
     }
 }
+import "../token/ERC1155/extensions/ERC1155CrosschainUpgradeable.sol";
+
+contract ERC1155CrosschainUpgradeableWithInit is ERC1155CrosschainUpgradeable {
+    constructor() payable initializer {
+        __ERC1155Crosschain_init();
+    }
+}
 import "../token/ERC1155/extensions/ERC1155PausableUpgradeable.sol";
 
 contract ERC1155PausableUpgradeableWithInit is ERC1155PausableUpgradeable {
@@ -1380,6 +1415,13 @@ import "../token/ERC721/extensions/ERC721ConsecutiveUpgradeable.sol";
 contract ERC721ConsecutiveUpgradeableWithInit is ERC721ConsecutiveUpgradeable {
     constructor() payable initializer {
         __ERC721Consecutive_init();
+    }
+}
+import "../token/ERC721/extensions/ERC721CrosschainUpgradeable.sol";
+
+contract ERC721CrosschainUpgradeableWithInit is ERC721CrosschainUpgradeable {
+    constructor() payable initializer {
+        __ERC721Crosschain_init();
     }
 }
 import "../token/ERC721/extensions/ERC721EnumerableUpgradeable.sol";

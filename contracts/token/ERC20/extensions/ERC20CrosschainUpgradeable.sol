@@ -1,13 +1,14 @@
 // SPDX-License-Identifier: MIT
+// OpenZeppelin Contracts (last updated v5.6.0) (token/ERC20/extensions/ERC20Crosschain.sol)
 
 pragma solidity ^0.8.26;
 
 import {ERC20Upgradeable} from "../ERC20Upgradeable.sol";
-import {BridgeERC20CoreUpgradeable} from "../../../crosschain/bridges/BridgeERC20CoreUpgradeable.sol";
+import {BridgeFungibleUpgradeable} from "../../../crosschain/bridges/abstract/BridgeFungibleUpgradeable.sol";
 import {Initializable} from "@openzeppelin/contracts/proxy/utils/Initializable.sol";
 
 /**
- * @dev Extension of {ERC20} that makes it natively cross-chain using the ERC-7786 based {BridgeERC20Core}.
+ * @dev Extension of {ERC20} that makes it natively cross-chain using the ERC-7786 based {BridgeFungible}.
  *
  * This extension makes the token compatible with counterparts on other chains, which can be:
  * * {ERC20Crosschain} instances,
@@ -20,7 +21,7 @@ import {Initializable} from "@openzeppelin/contracts/proxy/utils/Initializable.s
  * * `_checkTokenBridge` (on the {ERC20Bridgeable} side) is implemented such that it only accepts self-calls.
  */
 // slither-disable-next-line locked-ether
-abstract contract ERC20CrosschainUpgradeable is Initializable, ERC20Upgradeable, BridgeERC20CoreUpgradeable {
+abstract contract ERC20CrosschainUpgradeable is Initializable, ERC20Upgradeable, BridgeFungibleUpgradeable {
     function __ERC20Crosschain_init() internal onlyInitializing {
     }
 

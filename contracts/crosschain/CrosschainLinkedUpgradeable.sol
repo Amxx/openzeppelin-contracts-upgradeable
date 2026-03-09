@@ -1,11 +1,12 @@
 // SPDX-License-Identifier: MIT
+// OpenZeppelin Contracts (last updated v5.6.0) (crosschain/CrosschainLinked.sol)
 
 pragma solidity ^0.8.26;
 
 import {IERC7786GatewaySource} from "@openzeppelin/contracts/interfaces/draft-IERC7786.sol";
 import {InteroperableAddress} from "@openzeppelin/contracts/utils/draft-InteroperableAddress.sol";
 import {Bytes} from "@openzeppelin/contracts/utils/Bytes.sol";
-import {ERC7786RecipientUpgradeable} from "./ERC7786RecipientUpgradeable.sol";
+import {ERC7786Recipient} from "@openzeppelin/contracts/crosschain/ERC7786Recipient.sol";
 import {Initializable} from "@openzeppelin/contracts/proxy/utils/Initializable.sol";
 
 /**
@@ -13,13 +14,13 @@ import {Initializable} from "@openzeppelin/contracts/proxy/utils/Initializable.s
  *
  * This contract contains the logic to register and send messages to counterparts on remote chains using ERC-7786
  * gateways. It ensure received messages originate from a counterpart. This is the base of token bridges such as
- * {BridgeERC20Core}.
+ * {BridgeFungible}.
  *
  * Contracts that inherit from this contract can use the internal {_sendMessageToCounterpart} to send messages to their
  * counterpart on a foreign chain. They must override the {_processMessage} function to handle messages that have
  * been verified.
  */
-abstract contract CrosschainLinkedUpgradeable is Initializable, ERC7786RecipientUpgradeable {
+abstract contract CrosschainLinkedUpgradeable is Initializable, ERC7786Recipient {
     using Bytes for bytes;
     using InteroperableAddress for bytes;
 
@@ -111,7 +112,7 @@ abstract contract CrosschainLinkedUpgradeable is Initializable, ERC7786Recipient
         return IERC7786GatewaySource(gateway).sendMessage(counterpart, payload, attributes);
     }
 
-    /// @inheritdoc ERC7786RecipientUpgradeable
+    /// @inheritdoc ERC7786Recipient
     function _isAuthorizedGateway(
         address instance,
         bytes calldata sender

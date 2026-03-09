@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-// OpenZeppelin Contracts (last updated v5.5.0) (token/ERC1155/ERC1155.sol)
+// OpenZeppelin Contracts (last updated v5.6.0) (token/ERC1155/ERC1155.sol)
 
 pragma solidity ^0.8.24;
 
@@ -399,6 +399,7 @@ abstract contract ERC1155Upgradeable is Initializable, ContextUpgradeable, ERC16
      *
      * Requirements:
      *
+     * - `owner` cannot be the zero address.
      * - `operator` cannot be the zero address.
      */
     function _setApprovalForAll(address owner, address operator, bool approved) internal virtual {
